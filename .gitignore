@@ -2,4 +2,5 @@
 *__pycache__
 *.DS_Store
 src/logs/*
+src/fine_tuning/logs/*
 data/vec_data.csv
