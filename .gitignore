@@ -4,3 +4,4 @@
 src/logs/*
 src/fine_tuning/logs/*
 data/vec_data.csv
+src/vectorization/bert_tokenizer.py

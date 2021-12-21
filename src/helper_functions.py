@@ -67,5 +67,5 @@ def get_single_sample_by_index(data, i):
     samples = all_data[0].numpy()
     labels = all_data[1].numpy()
 
-    label_names = ['World', 'Sports', 'Business', 'Schience and Technology']
+    label_names = ['World', 'Sports', 'Business', 'Science and Technology']
     return samples[i], labels[i], label_names[labels[i]]
