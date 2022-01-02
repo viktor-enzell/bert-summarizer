@@ -3,6 +3,7 @@ from sklearn.cluster import KMeans
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity as cs
 from sklearn.metrics import accuracy_score as acc_score
+from sklearn import preprocessing 
 
 
 def all_combos(a, b):
@@ -61,6 +62,19 @@ def kmeans_pred(X, y, label_vectors, n_clusters):
 
     return kmeans.labels_
 
+def cos_kmeans_pred(X, y, label_vectors, n_clusters):
+    X_norm = preprocessing.normalize(X)
+    kmeans = KMeans(n_clusters=n_clusters, init=label_vectors).fit(X_norm)
+
+    if not (type(label_vectors) is np.ndarray):
+        label_vectors = label_vectors.to_numpy()
+    indexes = get_mse_index(kmeans.cluster_centers_.tolist(), label_vectors.tolist())
+
+    reps = dict(indexes)
+    kmeans_pred = [reps.get(x, x) for x in kmeans.labels_]
+    print(acc_score(y, kmeans_pred))
+
+    return kmeans.labels_
 
 def get_single_sample_by_index(data, i):
     all_data = data.__iter__().get_next()
